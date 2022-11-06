@@ -9,7 +9,7 @@ let DEBUG = true;
 
 
 function App() {
-  const [getWord, setWord] = useState<string>(() => words[Math.floor(Math.random() * words.length)]);
+  const [getWord, ] = useState<string>(() => words[Math.floor(Math.random() * words.length)]);
 
   if(DEBUG) console.log(getWord);
 
@@ -17,18 +17,24 @@ function App() {
 
   const wrongs = getGuessed.filter( letter => !getWord.includes(letter) );
 
-  const guess = useInput({getGuessed, setGuessed});
+  const lose = wrongs.length > 5;
+  const win = getWord.split("").every( letter => getGuessed.includes(letter) );
+  const fin = win || lose;
+
+  const guess = useInput({getGuessed, setGuessed}, fin);
 
   return (
     <div style={AppComponent}>
-      <div style={MessageDiv}> Win | Lose</div>
+      <div style={MessageDiv}> 
+      {win && "A Winner is You"}
+      {lose && "Try Again"} 
+      </div>
       <HangMan guessNum={wrongs.length}></HangMan>
       <WordBox guessedLetters={getGuessed} wordToGuess={getWord}></WordBox>
-      <Input activeLetters={getGuessed.filter(letter =>
-            getWord.includes(letter)
-          )}
-          inactiveLetters={wrongs}
-          addGuessedLetter={guess}></Input>
+      <Input disabled={fin}
+        activeLetters={getGuessed.filter(letter => getWord.includes(letter) )}
+        inactiveLetters={wrongs}
+        addGuessedLetter={guess}></Input>
     </div>
   )
 }

@@ -1,16 +1,16 @@
 import { useCallback, useEffect } from "react"
 
 
-export default function useInput({getGuessed, setGuessed}: any) {
+export default function useInput({getGuessed, setGuessed}: any, fin : boolean) {
 
   const makeGuess = useCallback(
     (guess: string ) => {
-      console.log(getGuessed)
-      if (getGuessed.includes(guess)) return
+      if (fin) return window.alert("Please Refresh")
+      if (getGuessed.includes(guess)) return;
   
       setGuessed( (prev: string[]) => [...prev, guess]);
     },
-    [getGuessed],
+    [getGuessed, fin],
   );
   
 
@@ -20,8 +20,6 @@ export default function useInput({getGuessed, setGuessed}: any) {
       const key = ke.key;
 
       if (key.match(/\W/)) return;
-
-      console.log("works");
 
       ke.preventDefault();
 
