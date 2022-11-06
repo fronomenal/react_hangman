@@ -1,6 +1,6 @@
 import styles from "./Input.module.css";
 
-const KEYS = ["b","a","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
+const KEYS = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
 
 type InputProps = {
   disabled?: boolean
@@ -11,9 +11,9 @@ type InputProps = {
 
 
 function Input({
-  activeLetters = ["a"],
-  inactiveLetters = ["b"],
-  addGuessedLetter = (name)=> console.log(name),
+  activeLetters,
+  inactiveLetters,
+  addGuessedLetter,
   disabled = false,
 }: InputProps) {
   return (

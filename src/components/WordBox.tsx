@@ -5,8 +5,8 @@ type WordBoxProps = {
 }
 
 function WordBox({
-  guessedLetters = ["z"], //Test: Fix Later
-  wordToGuess = "scz", //Test: Fix Later
+  guessedLetters,
+  wordToGuess,
   reveal = false,
 }: WordBoxProps) {
   return (

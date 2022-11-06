@@ -79,7 +79,6 @@ type HangmanProps = {
 };
 
 function HangMan({ guessNum }: HangmanProps) {
-  guessNum = 6; //TEST: FIX LATER
 
   return (
     <div style={{ position: "relative" }}>
