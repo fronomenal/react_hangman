@@ -11,7 +11,7 @@ let DEBUG = true;
 function App() {
   const [getWord, ] = useState<string>(() => words[Math.floor(Math.random() * words.length)]);
 
-  if(DEBUG) console.log(getWord);
+  if(DEBUG) console.log("there is no use fooling yourself: "+getWord);
 
   const [getGuessed, setGuessed] = useState<string[]>([]);
 
@@ -26,11 +26,11 @@ function App() {
   return (
     <div style={AppComponent}>
       <div style={MessageDiv}> 
-      {win && "A Winner is You"}
-      {lose && "Try Again"} 
+      {win && "A Winner is You!"}
+      {lose && "Try Again..."} 
       </div>
       <HangMan guessNum={wrongs.length}></HangMan>
-      <WordBox guessedLetters={getGuessed} wordToGuess={getWord}></WordBox>
+      <WordBox reveal={lose} guessedLetters={{get: getGuessed, set: setGuessed}} wordToGuess={getWord}></WordBox>
       <Input disabled={fin}
         activeLetters={getGuessed.filter(letter => getWord.includes(letter) )}
         inactiveLetters={wrongs}

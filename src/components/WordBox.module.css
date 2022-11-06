@@ -1,0 +1,7 @@
+.btmbar{
+  border-bottom: .1em solid black;
+}
+
+.btmbar:hover{
+  background-color: hsl(200, 100%, 75%);
+}
